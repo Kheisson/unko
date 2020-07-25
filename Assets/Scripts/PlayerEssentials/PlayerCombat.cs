@@ -12,7 +12,8 @@ public class PlayerCombat : MonoBehaviour
     private int _playerHP, _weaponSpeed;
     private int _playerMaxHP = 100;
     private GameObject _spawnPos;
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             GameObject bulletShoot = (GameObject)Instantiate(weapon.bulletPrefab, _spawnPos.transform.position, Quaternion.identity);
             Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,7 +41,6 @@ public class PlayerCombat : MonoBehaviour
             Vector2 direction = cursorInWorldPos - myPos;
             direction.Normalize();
             bulletShoot.GetComponent<Rigidbody2D>().velocity = direction * _weaponSpeed;
-
         }
     }
 

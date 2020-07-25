@@ -15,7 +15,6 @@ public class SpawnManager : MonoBehaviour
         for (int i = waveCount; i > 0; i--)
         {
             GameObject enemy = enemies[Random.Range(0, enemies.Count)];
-            enemy.name += $" {i}";
             int randomIndex = Random.Range(0, spawnPoints.Count);
             Vector3 randomPos = new Vector3(spawnPoints[randomIndex].transform.position.x, spawnPoints[randomIndex].transform.position.y, 0);
             Instantiate(enemy, randomPos, Quaternion.identity);

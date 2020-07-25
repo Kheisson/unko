@@ -2236,7 +2236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499528116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.281, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 10544886}
@@ -4715,6 +4715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentLevel: 1
   WaveCounterUI: {fileID: 1943058424}
+  gameOver: 0
 --- !u!4 &1851083836
 Transform:
   m_ObjectHideFlags: 0
@@ -4976,15 +4977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
-  - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
   - {fileID: 585293971305461449, guid: f5802764ebfbaeb4d8e3c3dec55d1c3b, type: 3}
   spawnPoints:
   - {fileID: 2003634374}
