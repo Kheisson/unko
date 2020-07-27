@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour,IEnemy
 
     public void Death()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
     
 
