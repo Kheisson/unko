@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour,IEnemy
 {
-    [SerializeField] private Enemy_SO enemy;
     [SerializeField] private int _enemyHP;
 
     private PlayerCombat _player;
     private SpawnManager _spawner;
     private EnemyItemSpawn _itemSpawner;
     private int _enemyDamage, _enemyMaxHealth;
+
+    public Enemy_SO enemy;
 
     public int EnemyDamage { get => enemy.enemyDamage; set => _enemyDamage = value; }
     public int EnemyHP { get => enemy.enemyHealth; set => _enemyHP = value; }
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour,IEnemy
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
         _spawner = FindObjectOfType<SpawnManager>();
         _itemSpawner = FindObjectOfType<EnemyItemSpawn>();
+        
     }
 
     private void OnEnable()

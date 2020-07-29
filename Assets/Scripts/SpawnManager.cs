@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemies;
+    public List<GameObject> enemies;
     public List<Transform> spawnPoints;
     public List<string> enemyCount;
 

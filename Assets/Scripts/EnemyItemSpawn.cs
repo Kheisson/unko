@@ -14,11 +14,6 @@ public class EnemyItemSpawn : MonoBehaviour
         return spawnedItem;
     }
 
-    public void SpawnItem(Vector3 enemyPos)
-    {
-        Debug.Log($"SpawnItem called {enemyPos}");
-        Instantiate(randomItem(), enemyPos, Quaternion.identity);
-    }
-
+    public void SpawnItem(Vector3 enemyPos) => Instantiate(randomItem(), enemyPos, Quaternion.identity);
 
 }
