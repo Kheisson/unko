@@ -7,5 +7,4 @@ using UnityEngine;
 public class Enemy_SO : ScriptableObject
 {
     public int enemyHealth, enemyDamage, enemyMaxHP;
-
 }

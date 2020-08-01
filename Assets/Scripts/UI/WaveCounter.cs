@@ -14,7 +14,6 @@ public class WaveCounter : MonoBehaviour
         text.gameObject.SetActive(false);
     }
 
-
     public void WaveAnimator(int level)
     {
         anim.clip = fadeOut;
@@ -22,6 +21,4 @@ public class WaveCounter : MonoBehaviour
         text.gameObject.SetActive(true);
         anim.Play();
     }
-
-
 }

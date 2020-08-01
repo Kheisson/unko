@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (_playerHP >= 1)
         {
-            _playerHP -= damage; //Need to add healthbar reduction
+            _playerHP -= damage; 
             healthBar.value = _playerHP;
         }
         else

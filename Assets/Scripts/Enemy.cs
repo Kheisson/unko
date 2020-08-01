@@ -25,13 +25,11 @@ public class Enemy : MonoBehaviour,IEnemy
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
         _spawner = FindObjectOfType<SpawnManager>();
         _itemSpawner = FindObjectOfType<EnemyItemSpawn>();
-        
     }
 
     private void OnEnable()
     {
-        _enemyHP = EnemyMaxHP;
-        
+        _enemyHP = EnemyMaxHP;   
     }
 
     private void OnDisable()

@@ -16,7 +16,5 @@ public class BasicCameraFollow : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, _destPosition, smoothSpeed);
     }
-
-
 }
 

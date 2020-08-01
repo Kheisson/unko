@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EnemyItemSpawn : MonoBehaviour
 {
-    public List<GameObject> spawnableObjects = new List<GameObject>();
+    public GameObject coin;
+    public GameObject healthPotion;
 
+    [SerializeField] private float _chanceOfSpawning = 0.8f;
+
+    //Spawn an Item when enemy is killed
     private GameObject randomItem()
     {
-        int randomIndex = Random.Range(0, spawnableObjects.Count);
-        GameObject spawnedItem = spawnableObjects[randomIndex];
-
-        return spawnedItem;
+        //20 percent chance that item spawned is healthPotion
+        GameObject itemDrop = Random.value >= _chanceOfSpawning ? healthPotion : coin;
+        return itemDrop;
     }
 
+    //Called by enemy, spawns an item upon death
     public void SpawnItem(Vector3 enemyPos) => Instantiate(randomItem(), enemyPos, Quaternion.identity);
 
 }

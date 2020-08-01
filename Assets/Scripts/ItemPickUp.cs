@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
 {
+    //Drops from enemies
     public Item_SO pickedUpItem;
-    public enum ItemType { Potion, Weapon };
+    public enum ItemType { Potion, Weapon, Coin };
 }

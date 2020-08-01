@@ -5,19 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int _currentLevel = 1; // Need to give spawnManager the wavecount
+    private SpawnManager _spawner;
 
     public WaveCounter WaveCounterUI;
     public bool gameOver;
 
-    private SpawnManager _spawner;
-
-    // Start is called before the first frame update
     void Start()
     {
         _spawner = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         StartCoroutine("SuspendExecution");
     }
 
+    //When all of the enemies are killed suspend and add one to level
     private IEnumerator SuspendExecution()
     {
         while (!gameOver)
