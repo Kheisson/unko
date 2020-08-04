@@ -67,24 +67,6 @@ public class PlayerCombat : MonoBehaviour
         //Need to display game over and SFX
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Item")
-        {
-            var item = collision.GetComponent<ItemPickUp>().pickedUpItem;
-            switch (item.itemType)
-            {
-                case ItemPickUp.ItemType.Potion:
-                    AddHealth();
-                    Destroy(collision.gameObject);
-                    break;
-                default:
-                    break;
-            }
-
-        }
-    }
     private IEnumerator ReplenishStamina()
     {
 

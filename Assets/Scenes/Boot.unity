@@ -4132,6 +4132,7 @@ GameObject:
   - component: {fileID: 1777611223}
   - component: {fileID: 1777611222}
   - component: {fileID: 1777611227}
+  - component: {fileID: 1777611228}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4270,6 +4271,18 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: d823dda3b1180b6408c6db094b58649f, type: 2}
   healthBar: {fileID: 9395124}
   staminaBar: {fileID: 1753780021}
+--- !u!114 &1777611228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777611221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6685dce7767bcb7468b832bd7df464f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1851083834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,9 +4597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7bc5fe060d86041aaece7917bee97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnableObjects:
-  - {fileID: 859486030433250802, guid: 19d6946abe92e6c438e06b3172a08573, type: 3}
-  - {fileID: 2250265337804289860, guid: cc1f0585e79c90b43bdd41f6b4f675fd, type: 3}
+  coin: {fileID: 3596672574210658761, guid: 6a738c36766eee14ba83660fad85f566, type: 3}
+  healthPotion: {fileID: 2250265337804289860, guid: cc1f0585e79c90b43bdd41f6b4f675fd,
+    type: 3}
+  _chanceOfSpawning: 0.8
 --- !u!1 &2104813702
 GameObject:
   m_ObjectHideFlags: 0
