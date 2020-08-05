@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private PlayerCombat _playerCombatScript;
+
+
     void Start()
     {
-        
+        _playerCombatScript = GetComponent<PlayerCombat>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Item")
+        {
+            var item = collision.GetComponent<ItemPickUp>().pickedUpItem.itemType;
+            switch (item)
+            {
+                case ItemPickUp.ItemType.Potion:
+                    _playerCombatScript.AddHealth();
+                    break;
+                case ItemPickUp.ItemType.Coin:
+                    Debug.Log("Coin picked up");
+                    break;
+                default:
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
     }
 }

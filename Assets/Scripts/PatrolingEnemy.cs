@@ -26,20 +26,20 @@ public class PatrolingEnemy : MonoBehaviour
         StartCoroutine(EnemyPatrol(_patrolTime));
     }
 
-
+    
     private void Update()
     {
+        //Checks for player position and sets the destination on gameobject to said position
         Vector2 playerPosition = new Vector2(_playerPos.transform.position.x, _playerPos.transform.position.y);
 
         if (Vector2.Distance(playerPosition, transform.position) < 3)
         {
             isPatroling = false;
             _setter.target = _playerPos.transform;
-
         }
     }
 
-
+    //Patroling enemy function, circles through waypoins
     private IEnumerator EnemyPatrol(float patrolTime)
     {
         while (isPatroling)
