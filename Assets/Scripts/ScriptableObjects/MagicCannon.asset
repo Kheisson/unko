@@ -18,3 +18,4 @@ MonoBehaviour:
   weaponDescription: Glowing Blue Ball
   fireRate: 4
   damage: 20
+  priceOfWeapon: 0
