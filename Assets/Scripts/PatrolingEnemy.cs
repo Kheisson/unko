@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 
-public class PatrolingEnemy : MonoBehaviour
+public class PatrolingEnemy : EnemyAttack
 {
     [SerializeField] private bool isPatroling = true;
 
@@ -13,6 +13,7 @@ public class PatrolingEnemy : MonoBehaviour
     private Transform _playerPos;
     private GameObject _player;
     private AIDestinationSetter _setter;
+    private EnemyAttack _attackManager;
     private SpawnManager _spawner;
     private List<Transform> _waypoints;
 
@@ -21,6 +22,7 @@ public class PatrolingEnemy : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _spawner = FindObjectOfType<SpawnManager>();
         _setter = GetComponent<AIDestinationSetter>();
+        _attackManager = GetComponent<EnemyAttack>();
         _playerPos = _player.transform;
         _waypoints = _spawner.spawnPoints;
         StartCoroutine(EnemyPatrol(_patrolTime));
@@ -36,6 +38,7 @@ public class PatrolingEnemy : MonoBehaviour
         {
             isPatroling = false;
             _setter.target = _playerPos.transform;
+            _attackManager.InitiateAttack();
         }
     }
 
@@ -51,7 +54,7 @@ public class PatrolingEnemy : MonoBehaviour
             }
             else
             {
-                _destPoint = _destPoint % _waypoints.Count;
+                _destPoint %= _waypoints.Count;
                 _setter.target = _waypoints[_destPoint];
                 _destPoint++;
             }
