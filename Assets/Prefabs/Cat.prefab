@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfcffb1f7b1a37438c77dc08f53fb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: bafcf1d82a9e3b2479bb88e755654f5d, type: 2}
   _enemyHP: 0
+  enemy: {fileID: 11400000, guid: bafcf1d82a9e3b2479bb88e755654f5d, type: 2}
 --- !u!114 &786797330990441976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,4 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f46b3522717c148b3e0e754743c184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileGO: {fileID: 1351279873596628990, guid: 19fe6ac8d71b2124ca63abdbcdbc7c9e,
+    type: 3}
+  attackSpeed: 10
   isPatroling: 1

@@ -16,6 +16,7 @@ public class PatrolingEnemy : EnemyAttack
     private EnemyAttack _attackManager;
     private SpawnManager _spawner;
     private List<Transform> _waypoints;
+    private Coroutine _attackCoroutine;
 
     private void Start()
     {
@@ -38,7 +39,13 @@ public class PatrolingEnemy : EnemyAttack
         {
             isPatroling = false;
             _setter.target = _playerPos.transform;
-            _attackManager.InitiateAttack();
+
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);
+            }
+
+            _attackCoroutine = StartCoroutine(AttackInbound());
         }
     }
 
@@ -59,6 +66,15 @@ public class PatrolingEnemy : EnemyAttack
                 _destPoint++;
             }
             yield return new WaitForSeconds(patrolTime);
+        }
+    }
+
+    private IEnumerator AttackInbound()
+    {
+        while (!isPatroling)
+        {
+            _attackManager.InitiateAttack(transform.position, _player.transform.position, 4);
+            yield return new WaitForSeconds(3f);
         }
     }
 }

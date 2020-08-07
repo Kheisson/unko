@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public void InitiateAttack()
+    public GameObject projectileGO;
+    private Rigidbody2D _projectileRB;
+
+
+    public void InitiateAttack(Vector3 enemyLoc, Vector3 playerLoc, int attackSpeed)
     {
-        throw new NotImplementedException();
+        GameObject projectile = Instantiate(projectileGO, enemyLoc, Quaternion.identity);
+        _projectileRB = projectile.GetComponent<Rigidbody2D>();
+        Vector2 direction = playerLoc - projectile.transform.position;
+        direction.Normalize();
+        _projectileRB.velocity = direction * attackSpeed;
     }
 }
