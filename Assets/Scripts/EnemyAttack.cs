@@ -15,6 +15,7 @@ public class EnemyAttack : MonoBehaviour
         _projectileRB = projectile.GetComponent<Rigidbody2D>();
         Vector2 direction = playerLoc - projectile.transform.position;
         direction.Normalize();
+        projectile.transform.up = (playerLoc + projectile.transform.position);
         _projectileRB.velocity = direction * attackSpeed;
     }
 }

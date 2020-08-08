@@ -9,6 +9,7 @@ public class PatrolingEnemy : EnemyAttack
     [SerializeField] private bool isPatroling = true;
 
     private float _patrolTime = 5f;
+    private float _attackInterval = 0;
     private int _destPoint = 0;
     private Transform _playerPos;
     private GameObject _player;
@@ -40,12 +41,11 @@ public class PatrolingEnemy : EnemyAttack
             isPatroling = false;
             _setter.target = _playerPos.transform;
 
-            if (_attackCoroutine != null)
+            if (Time.time > _attackInterval)
             {
-                StopCoroutine(_attackCoroutine);
+                _attackManager.InitiateAttack(transform.position, _player.transform.position, 4);
+                _attackInterval = 2 + Time.time;
             }
-
-            _attackCoroutine = StartCoroutine(AttackInbound());
         }
     }
 
@@ -66,15 +66,6 @@ public class PatrolingEnemy : EnemyAttack
                 _destPoint++;
             }
             yield return new WaitForSeconds(patrolTime);
-        }
-    }
-
-    private IEnumerator AttackInbound()
-    {
-        while (!isPatroling)
-        {
-            _attackManager.InitiateAttack(transform.position, _player.transform.position, 4);
-            yield return new WaitForSeconds(3f);
         }
     }
 }
