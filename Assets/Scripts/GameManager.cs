@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         while (!gameOver)
         {
-            if (_spawner.enemyCount.Count == 0)
+            if (SpawnManager.enemyCounter == 0)
             {
                 WaveCounterUI.WaveAnimator(_currentLevel);
                 _spawner.SpawnEnemies(_currentLevel);

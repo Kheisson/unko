@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [Header("Player Stats")]
     public int playerDamage;
     public Weapon_SO weapon;
+
+    [Header("UI elements")]
     public Slider healthBar;
     public Slider staminaBar;
 
@@ -19,7 +22,7 @@ public class PlayerCombat : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _weaponSpeed = weapon.fireRate;
         _playerHP = _playerMaxHP;
@@ -28,18 +31,23 @@ public class PlayerCombat : MonoBehaviour
         playerDamage = weapon.damage;
         healthBar.value = _playerHP;
         staminaBar.value = _stamina;
+        _timer = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Shoot();
+        if (Time.time > _timer)
+        {
+            _timer = Time.time + _fireTimer;
+            Shoot();
+        }
     }
 
 
     private void Shoot()
     {
-        if (Input.GetButton("Fire1") && _timer <= _fireTimer && staminaBar.value > 0)
+        if (Input.GetButton("Fire1") && staminaBar.value > 0)
         {
             GameObject bulletShoot = (GameObject)Instantiate(weapon.bulletPrefab, _spawnPos.transform.position, Quaternion.identity);
             Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -47,16 +55,10 @@ public class PlayerCombat : MonoBehaviour
             Vector2 direction = cursorInWorldPos - myPos;
             direction.Normalize();
             bulletShoot.GetComponent<Rigidbody2D>().velocity = direction * _weaponSpeed;
-            _timer += Time.deltaTime;
             staminaBar.value -= 1;
-
             if (_replenishStamina != null) { StopCoroutine(_replenishStamina); }
 
             _replenishStamina = StartCoroutine(ReplenishStamina());
-        }
-        else
-        {
-            _timer = 0;
         }
     }
 

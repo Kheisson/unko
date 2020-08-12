@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Obstacle
   - Item
+  - Interactable
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX

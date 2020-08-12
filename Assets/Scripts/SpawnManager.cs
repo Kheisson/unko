@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> enemies;
     public List<Transform> spawnPoints;
     public List<string> enemyCount;
+    public static int enemyCounter;
 
 
     // Spawning enemies per round, called in game manager script
