@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    [Header("Player Stats")]
     public int playerDamage;
     public Weapon_SO weapon;
+
+    [Header("UI elements")]
     public Slider healthBar;
     public Slider staminaBar;
 
@@ -19,7 +22,7 @@ public class PlayerCombat : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _weaponSpeed = weapon.fireRate;
         _playerHP = _playerMaxHP;
@@ -32,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Time.time > _timer)
         {

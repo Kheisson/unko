@@ -65,14 +65,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BasicCameraFollow.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\EnemyAttack.cs" />
-    <Compile Include="Assets\Scripts\EnemyItemSpawn.cs" />
-    <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EnemyItemSpawn.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EnemyProjectile.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\IEnemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\PatrolingEnemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\IEnemy.cs" />
     <Compile Include="Assets\Scripts\ItemPickUp.cs" />
-    <Compile Include="Assets\Scripts\PatrolingEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerEssentials\IsometricPlayerMovementController.cs" />
     <Compile Include="Assets\Scripts\PlayerEssentials\PlayerCombat.cs" />
     <Compile Include="Assets\Scripts\PlayerEssentials\PlayerItems.cs" />

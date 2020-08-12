@@ -7,11 +7,12 @@ public class Enemy : MonoBehaviour,IEnemy
 {
     [SerializeField] private int _enemyHP;
 
-    private PlayerCombat _player;
-    private SpawnManager _spawner;
-    private EnemyItemSpawn _itemSpawner;
-    private int _enemyDamage, _enemyMaxHealth;
+    protected PlayerCombat _player;
+    protected EnemyItemSpawn _itemSpawner;
+    protected Rigidbody2D _projectileRB;
+    protected int _enemyDamage, _enemyMaxHealth, _projectileDamage;
 
+    public GameObject projectileGO;
     public Enemy_SO enemy;
 
     public int EnemyDamage { get => enemy.enemyDamage; set => _enemyDamage = value; }
@@ -23,21 +24,21 @@ public class Enemy : MonoBehaviour,IEnemy
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
-        _spawner = FindObjectOfType<SpawnManager>();
         _itemSpawner = FindObjectOfType<EnemyItemSpawn>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
-        _enemyHP = EnemyMaxHP;   
+        _enemyHP = EnemyMaxHP;
+        SpawnManager.enemyCounter++;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
-        _spawner.RemoveSpawn();
+        SpawnManager.enemyCounter--;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
             GiveDamage(EnemyDamage);
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour,IEnemy
 
     public void TakeDamage(int damage) 
     {
-        if (_enemyHP >= 1)
+        if (_enemyHP > 0)
         {
             _enemyHP -= damage;
         }
@@ -62,7 +63,17 @@ public class Enemy : MonoBehaviour,IEnemy
     {
         Destroy(this.gameObject);
     }
-    
 
+    public void InitiateAttack(Vector3 enemyLoc, Vector3 playerLoc, int attackSpeed)
+    {
+        GameObject projectile = Instantiate(projectileGO, enemyLoc, Quaternion.identity);
+        _projectileRB = projectile.GetComponent<Rigidbody2D>();
+        Vector2 direction = playerLoc - projectile.transform.position;
+        direction.Normalize();
+        projectile.transform.up = (playerLoc + projectile.transform.position);
+        _projectileRB.velocity = direction * attackSpeed;
+        _projectileDamage = projectile.GetComponent<EnemyProjectile>().damageToInflict;
+        _projectileDamage = EnemyDamage;
+    }
 
 }

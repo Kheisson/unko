@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 585293971305461490}
   - component: {fileID: 585293971305461491}
   - component: {fileID: 585293971305461452}
-  - component: {fileID: 585293971305461489}
-  - component: {fileID: 786797330990441976}
+  - component: {fileID: 6297356913059397312}
+  - component: {fileID: -7186586238691307253}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Enemy
@@ -149,8 +149,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 4294967295
     useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  traversableTags: -3
+  tagPenalties: 0000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
 --- !u!114 &585293971305461491
@@ -203,7 +203,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!114 &585293971305461489
+--- !u!114 &6297356913059397312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585293971305461449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f46b3522717c148b3e0e754743c184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPatroling: 1
+--- !u!114 &-7186586238691307253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,20 +229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHP: 0
-  enemy: {fileID: 11400000, guid: bafcf1d82a9e3b2479bb88e755654f5d, type: 2}
---- !u!114 &786797330990441976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585293971305461449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f46b3522717c148b3e0e754743c184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   projectileGO: {fileID: 1351279873596628990, guid: 19fe6ac8d71b2124ca63abdbcdbc7c9e,
     type: 3}
-  attackSpeed: 10
-  isPatroling: 1
+  enemy: {fileID: 11400000, guid: bafcf1d82a9e3b2479bb88e755654f5d, type: 2}
