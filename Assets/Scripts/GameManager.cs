@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int _currentLevel = 1; // Need to give spawnManager the wavecount
     private SpawnManager _spawner;
-
     public WaveCounter WaveCounterUI;
-    public bool gameOver;
+    public bool gameOver, notBossLevel;
 
     void Start()
     {
+        notBossLevel = true;
         _spawner = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         StartCoroutine("SuspendExecution");
     }
@@ -21,20 +21,13 @@ public class GameManager : MonoBehaviour
     {
         while (!gameOver)
         {
-            if (SpawnManager.enemyCounter == 0)
+            if (SpawnManager.enemyCounter == 0 && notBossLevel)
             {
                 WaveCounterUI.WaveAnimator(_currentLevel);
-                _spawner.SpawnEnemies(_currentLevel);
+                _spawner.SpawnWave(_currentLevel - 1);
                 _currentLevel++;
             }
             yield return new WaitForSeconds(10f);
         }
     }
-
-
-
-
-
-
-
 }

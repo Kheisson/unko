@@ -7,7 +7,7 @@ public class EnemyItemSpawn : MonoBehaviour
     public GameObject coin;
     public GameObject healthPotion;
 
-    [SerializeField] private float _chanceOfSpawning = 0.8f;
+    private float _chanceOfSpawning = 0.6f;
 
     //Spawn an Item when enemy is killed
     private GameObject randomItem()

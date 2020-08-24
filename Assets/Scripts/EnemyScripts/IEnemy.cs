@@ -6,11 +6,11 @@ public interface IEnemy
 {
     //Enemy interface
     int EnemyHP { get; set; }
-    int EnemyMaxHP { get; set; }
-    int EnemyDamage { get; set; }
+    int EnemyMaxHP { get;}
+    int EnemyDamage { get;}
 
     void TakeDamage(int damage);
-    void GiveDamage(int damage);
+    void GiveDamage(PlayerCombat player);
 
 
 }

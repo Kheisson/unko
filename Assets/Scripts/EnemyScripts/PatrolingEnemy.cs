@@ -4,26 +4,30 @@ using UnityEngine;
 using Pathfinding;
 
 
-public class PatrolingEnemy : MonoBehaviour
+public class PatrolingEnemy : Enemy
 {
-    [SerializeField] private bool isPatroling = true;
+    private bool _isPatroling;
     private float _patrolTime = 5f;
-    private float _attackInterval = 0;
     private int _destPoint = 0;
     private GameObject _playerPos;
     private AIDestinationSetter _setter;
-    private List<Transform> _waypoints;
-    private Enemy _enemyBaseClass;
+    private EnemyItemSpawn _itemSpawner;
+    private SpawnManager _spawner;
 
-    private void Start()
+    private void OnEnable()
     {
-        _setter = GetComponent<AIDestinationSetter>();
-        _playerPos = GameObject.FindGameObjectWithTag("Player");
-        _waypoints = GameObject.FindObjectOfType<SpawnManager>().spawnPoints;
-        _enemyBaseClass = GetComponent<Enemy>();
+        base.Start();
+        _isPatroling = true;
+        SpawnManager.enemyCounter++;
         StartCoroutine(EnemyPatrol(_patrolTime));
     }
-
+    private void Awake()
+    {
+        _setter = GetComponent<AIDestinationSetter>();
+        _itemSpawner = FindObjectOfType<EnemyItemSpawn>();
+        _spawner = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _playerPos = GameObject.FindGameObjectWithTag("Player");
+    }
     
     private void Update()
     {
@@ -34,35 +38,41 @@ public class PatrolingEnemy : MonoBehaviour
 
             if (Vector2.Distance(playerPosition, transform.position) < 3)
             {
-                isPatroling = false;
+                _isPatroling = false;
                 _setter.target = _playerPos.transform;
-
-                if (Time.time > _attackInterval)
-                {
-                    _enemyBaseClass.InitiateAttack(transform.position, _playerPos.transform.position, 4);
-                    _attackInterval = 2 + Time.time;
-                }
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            base.GiveDamage(_playerPos.GetComponent<PlayerCombat>());
     }
 
     //Patroling enemy function, circles through waypoins
     private IEnumerator EnemyPatrol(float patrolTime)
     {
-        while (isPatroling)
+        while (_isPatroling)
         {
-            if (_waypoints.Count == 0)
+            if (_spawner.spawnPoints.Count == 0)
             {
                 Debug.LogError("No Waypoints for Patrol!");
                 yield return null;
             }
             else
             {
-                _destPoint %= _waypoints.Count;
-                _setter.target = _waypoints[_destPoint];
+                _destPoint %= _spawner.spawnPoints.Count;
+                _setter.target = _spawner.spawnPoints[_destPoint];
                 _destPoint++;
             }
             yield return new WaitForSeconds(patrolTime);
         }
+    }
+
+    private void OnDisable()
+    {
+        SpawnManager.enemyCounter--;
+        _itemSpawner.SpawnItem(new Vector3(transform.position.x, transform.position.y, 0));
     }
 }

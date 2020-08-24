@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyItemSpawn.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\IEnemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\OneShotEnemy.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\PatrolingEnemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ItemPickUp.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\PlayerEssentials\PlayerItems.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Enemy_SO.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Item_SO.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\WaveManager_SO.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Weapon_SO.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\UI\WaveCounter.cs" />

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
@@ -12,7 +11,11 @@ public class EnemyProjectile : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.GetComponent<PlayerCombat>().TakeDamage(damageToInflict);
+            Destroy(this.gameObject);
         }
+
+        if (collision.gameObject.tag == "Obstacle")
+            Destroy(this.gameObject);
     }
 
     private void OnBecameInvisible()
