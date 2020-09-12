@@ -14,13 +14,14 @@ public class OneShotEnemy : MonoBehaviour
     {
         _playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
+        // Firerate - if canShoot - canShoot should be false, Should Invoke the method with delay
         if (_playerPos != null && Vector2.Distance(transform.position,_playerPos) < 3  && _canShoot)
         {
             InitiateAttack(transform.position, _playerPos, 3);
-            _canShoot = false;
-            StartCoroutine(Reload());
         }
     }
+    private void CanShootAgain() => _canShoot = true;
+
     public void InitiateAttack(Vector3 enemyLoc, Vector3 playerLoc, int attackSpeed)
     {
         GameObject projectile = Instantiate(projectileGO, enemyLoc, Quaternion.identity);
@@ -29,11 +30,10 @@ public class OneShotEnemy : MonoBehaviour
         direction.Normalize();
         projectile.transform.up = (playerLoc + projectile.transform.position);
         _projectileRB.velocity = direction * attackSpeed;
+        _canShoot = false;
+        Invoke("CanShootAgain", 1f); //Invoked with hardcoded value, should be dynamic.
     }
 
-    IEnumerator Reload()
-    {
-        yield return new WaitForSeconds(3);
-        _canShoot = true;
-    }
 }
+
+

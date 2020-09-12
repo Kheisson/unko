@@ -16,7 +16,8 @@ public class PlayerCombat : MonoBehaviour
     private int _playerHP, _weaponSpeed;
     private int _playerMaxHP = 100;
     private int _stamina = 150;
-    private float _fireTimer, _timer;
+    private float _fireTimer;
+    private bool _canShoot = true;
     private GameObject _spawnPos;
     private Coroutine _replenishStamina;
 
@@ -31,17 +32,14 @@ public class PlayerCombat : MonoBehaviour
         playerDamage = weapon.damage;
         healthBar.value = _playerHP;
         staminaBar.value = _stamina;
-        _timer = 0;
+
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Time.time > _timer)
-        {
-            _timer = Time.time + _fireTimer;
+        if (_canShoot)
             Shoot();
-        }
     }
 
 
@@ -55,12 +53,16 @@ public class PlayerCombat : MonoBehaviour
             Vector2 direction = cursorInWorldPos - myPos;
             direction.Normalize();
             bulletShoot.GetComponent<Rigidbody2D>().velocity = direction * _weaponSpeed;
-            staminaBar.value -= 1;
+            staminaBar.value -= 10;
             if (_replenishStamina != null) { StopCoroutine(_replenishStamina); }
 
             _replenishStamina = StartCoroutine(ReplenishStamina());
+            _canShoot = false;
+            Invoke("CanShootAgain", 0.3f);
         }
     }
+
+    private void CanShootAgain() => _canShoot = true;
 
 
     private void Death()
